@@ -20,7 +20,7 @@
 %   dirs - a structure map of the created directories and files used for
 %       analysis.
 %
-% For examples see 'quantifyMonolayerMigrationBulkMain.m' @step #3
+% For examples see 'quantifyMonolayerMigrationBulkMain.m' @step #1
 % 
 % 
 % Yishaia Zabary, Jun. 2020 (Adapted for the Bioimage Data Analysis Workflows - Advanced Components
@@ -67,10 +67,8 @@ for t = params.minNFrames : params.nTime
     [~,thMatching] =  cutFirstHistMode(nelements,centers,0); % rosin threshold
     scoresNoNans = inpaint_nans(scores,4);
     BIN = scoresNoNans < 1 - thMatching;
-    
     % fill holes, select largest ROI and intersect with previous ROI
     roiMatching = fillRoiHoles(BIN);
-    
     roiMatching = erode(roiMatching,params.patchSize);
     
     % First time go on the safe side and use two segmentations
@@ -84,7 +82,7 @@ for t = params.minNFrames : params.nTime
             I = I(:,:,1);            
         end
         
-        [roiTexture,tmp] = segmentPhaseContrastLBPKmeans(I,params.patchSize,lbpMapping);
+        roiTexture = segmentPhaseContrastLBPKmeans(I,params.patchSize,lbpMapping);
         
         if sum(roiTexture(:)) < 1.2 * sum(roiMatching(:))          
             roiCombined = imfill(roiMatching | roiTexture,'holes');

@@ -5,7 +5,7 @@
 % 
 % Output: binary image at original resolution
 
-function [BIN,result] = segmentPhaseContrastLBPKmeans(I,patchSize,lbpMapping)
+function BIN = segmentPhaseContrastLBPKmeans(I,patchSize,lbpMapping)
 
 if size(I,3) == 3
     I = rgb2gray(I);

@@ -8,7 +8,7 @@ Yishaia Zabary & Assaf Zaritsky - yishaiaz@post.bgu.ac.il, assafzar@gmail.com
 ### The repository includes Matlab source code.
 ### This repository is part of the book series "Neubias Bioimage Analysis"
 The pipeline receives as input the raw image data in one of the following formats: tiff stack, zvi (Zeiss Vision Image) or lsm (Zeiss tiff based proprietary format). Each data file is a single time-lapse experiment. We assume label-free imaging and analyze only the first channel in multi-channel image stacks.
-The pipeline includes four conceptual steps,  each depending on the previous one and thus must be executed sequentially.  The first two steps are performed at the single time-lapse level (seequantifyMonolayerMigration-Main.m).   The  rest  of  the  pipeline  is  for  the  analysis  of  multiple  experi-ments,  enabling the comparison between different experiments and con-ditions, and is not recommended for novice users (see quantifyMonolayerMigrationBulkMain.m)
+The pipeline includes four conceptual steps,  each depending on the previous one and thus must be executed sequentially.  The first two steps are performed at the single time-lapse level (see quantifyMonolayerMigration-Main.m).   The  rest  of  the  pipeline  is  for  the  analysis  of  multiple  experiments,  enabling the comparison between different experiments and conditions, and is not recommended for novice users (see quantifyMonolayerMigrationBulkMain.m)
 
 - Segmenting each image to cellular (foreground) and background regions, and calculating the velocity fields. The output of this stage includes quantification of     the wound healing over time, visualizations of the foreground/background segmentation, visualization of the velocity fields, and more detailed visualization of     outputs for advanced debugging purposes.
 - Calculating kymographs that capture the experiment’s spatiotemporal dynamics. The output of this stage includes visualization of the kymographs.
@@ -29,11 +29,11 @@ The pipeline includes four conceptual steps,  each depending on the previous one
 - `params.pixelSize` % Phyiscal pixel size (um).
 - `params.maxSpeed` % The estimated maximal speed of the inspected phenotype
 - `params.minNFrames` % The index of the first frame to include in the analysis.
-- `params.maxNFrames` % The frame number to end the analysis
-
+- `params.maxNFrames` % The frame number to end the analysis.
+- `params.patchSize` % The patch size for PIV and kymograph analyses.
 ### Sample data
 - Download raw images via the link: [SampleData]() , called `https://doi.org/10.5281/zenodo.4129846`
-- The default parameters in `quantifyMonolayerMigrationBulkMain.m` and `quantifyMonolayerMigrationMain.m` were set for the single expanding monolayer directory of this data.
+- The default parameters in `quantifyMonolayerMigrationBulkMain.m` and `quantifyMonolayerMigrationMain.m` were set for the single expanding monolayer directory of this data. 
 
 ### Output folders
 - Each time-lapse has its own folder (e.g., `EXP_16HBE14o_1E_SAMPLE`). 

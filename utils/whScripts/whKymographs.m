@@ -21,7 +21,7 @@
 %   dirs - a structure map of the created directories and files used for
 %       analysis.
 %
-% For examples see 'quantifyMonolayerMigrationBulkMain.m' @step #3
+% For examples see 'quantifyMonolayerMigrationBulkMain.m' @step #2
 % 
 % 
 % Yishaia Zabary, Jun. 2020 (Adapted for the Bioimage Data Analysis Workflows - Advanced Components
@@ -30,7 +30,7 @@ function [] = whKymographs(params,dirs, measuresToExtract)
 
 params.xStepMinutes = 60;
 params.yStepUm = 50;
-params.yMaxUm = params.kymoMaxDistMu - params.kymoMinDistMu;
+% params.yMaxUm = params.kymoMaxDistMu - params.kymoMinDistMu;
 params.fontsize = 24;
 params.totalFramesToAnalyse = min([params.nTime params.kymoMaxTimeFrameNum]) - max([params.minNFrames params.kymoMinTimeFrameNum]);
 
@@ -70,10 +70,7 @@ for t = max([params.kymoMinTimeFrameNum, params.minNFrames]) : min([params.nTime
     DIST = bwdist(~ROI);
     
     for d = 1 : params.nstrips
-        inDist = ...
-            (DIST > (params.strips(d)-params.kymoResolution.stripSize)) & ...
-            (DIST < params.strips(d)) & ...
-            ~isnan(speed);
+        inDist = (DIST > (params.strips(d)-params.kymoResolution.stripSize)) & (DIST < params.strips(d)) & ~isnan(speed);
         speedInStrip = speed(inDist);
         speedKymograph(d,t - max([params.minNFrames params.kymoMinTimeFrameNum]) + 1) = mean(speedInStrip);
         % For directional migration

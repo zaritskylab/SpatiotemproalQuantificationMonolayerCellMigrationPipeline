@@ -53,4 +53,41 @@ clearvars;
 % % imagesc(velocities_amp); title(sprintf('velocity frame number %03d', frame_num));
 % imagesc(scores); title(sprintf('frame %03d match score',frame_num));
 
-
+%% Exercise 2 solution - calc and plot kymograph under different parameters
+% experimentsFilePaths = ['EXP_16HBE14o_1E_SAMPLE.tif' 'EXP_MDCK_HGFSF_1E_SAMPLE.tif'];
+% mainDirectoryFN = '/Users/yishaiazabary/Downloads/FOV19/ShortVersions/ready/';
+% expsNames = ["EXP_16HBE14o_1E_SAMPLE.tif", "EXP_MDCK_HGFSF_1E_SAMPLE.tif"];
+% patchSizes = [15 5];
+% maxSpeeds = [90 30];
+% pixelSizes = [1.267428 0.879];
+% timePerFrames = [5 15];
+% for configIdx = 1 : 2
+%     for fileIdx = 1 : length(expsNames)
+%         clear params;
+%         pathToFile = [mainDirectoryFN convertStringsToChars(expsNames(fileIdx))];
+%         params.patchSizeUm = patchSizes(configIdx); % calc 
+%         params.pixelSize  =  pixelSizes(configIdx); % 2nd file 0.879
+%         params.timePerFrame = timePerFrames(configIdx);
+%         params.maxSpeed = maxSpeeds(configIdx);
+%         [params, dirs] = initParamsDirs(pathToFile, params); % set missing parameters, create output directories
+%         calcSpatiotemporalRaw(params, dirs);
+%         allMeasuresToProcess = {'speed', 'directionality'};
+%         KymographsByMeasure(params, dirs, allMeasuresToProcess);
+%         close all;
+%     end
+% end
+%% Exercise 5 solution - subtract two speed kymographs and visualize the resulting kymograph
+% speedKymographsFN = '/Users/yishaiazabary/Downloads/FOV19/ShortVersions/safeguardKymos/';
+% speedKymo1Path = [speedKymographsFN 'EXP_16HBE14o_1E_SAMPLE_speedKymograph.mat'];
+% speedKymo2Path = [speedKymographsFN 'EXP_MDCK_HGFSF_1E_SAMPLE_speedKymograph.mat'];
+% speedKymo1 = load(speedKymo1Path).speedKymograph; speedKymo2 = load(speedKymo2Path).speedKymograph;
+% maxTimeToCompare = 50;
+% subtratcionResult = speedKymo1(:, 1:maxTimeToCompare) - speedKymo2(:, 1:maxTimeToCompare);
+% h = figure;
+% hold on;
+% colormap('jet');
+% imagescnan(subtratcionResult);
+% haxes = get(h,'CurrentAxes');
+% set(h,'Color','w');
+% hold off;
+% 

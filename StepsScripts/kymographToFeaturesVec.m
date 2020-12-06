@@ -1,4 +1,4 @@
-%% kymographsToFeaturesVec
+    %% kymographsToFeaturesVec
 % Extracts and returns an n feature vector for a single kymograph.
 % where n = params.kymographFeatMetaParams.spatialPartition *
 % params.kymographFeatMetaParams.timePartition.
@@ -49,19 +49,21 @@ end
 
 %%
 function [features] = getFeatures(kymograph, metaParameters, params)
-
 nTime = min([floor(metaParameters.timeToAnalyze/metaParameters.timePerFrame) length(kymograph(1, :))]);
+nSpace = metaParameters.spaceToAnalyze;
+singleTileTime = floor(nTime/(params.timePartition));
+singleTileSpace = floor(nSpace/(params.spatialPartition));
+
 nFeats = params.timePartition * params.spatialPartition;
+iSpace = 1 : singleTileSpace : nSpace+1;
+iTime = 1 : singleTileTime : nTime+1; 
+
 features = zeros(nFeats,1);
-
-ys = 1 : floor(metaParameters.spaceToAnalyze/(params.spatialPartition)) : metaParameters.spaceToAnalyze+1;
-xs = 1 : floor(nTime/(params.timePartition)) : nTime+1; 
-
 curFeatI = 0;
 for y = 1 : params.spatialPartition
     for x = 1 : params.timePartition%x = 1 : metaParameters.timePartition
         curFeatI = curFeatI + 1;
-        values = kymograph(ys(y):(ys(y+1)-1),xs(x):(xs(x+1)-1));
+        values = kymograph(iSpace(y):(iSpace(y+1)-1),iTime(x):(iTime(x+1)-1));
         values = values(~isinf(values));
         values = values(~isnan(values));
         features(curFeatI) = mean(values(:));

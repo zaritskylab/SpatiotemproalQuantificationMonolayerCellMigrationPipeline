@@ -1,7 +1,8 @@
 function [filenamesNoExt] = removeFilesExtensions(fileFNames)
     for fileIDX = 1 : length(fileFNames)
-        [path, filename, ext] = fileparts(fileFNames(fileIDX));
-        fileFNames(fileIDX) = filename;
+        filepath = char(fileFNames(fileIDX));
+        [path, filename, ext] = fileparts(filepath);
+        fileFNames(fileIDX) = cellstr(filename);
     end
-    filenamesNoExt = fileFNames;
+    filenamesNoEx t = fileFNames;
 end

@@ -22,7 +22,7 @@
 %        true size.
 % 
 %
-% For examples see 'exampleOfEntireWorkflow.m' @ Bonus step
+% For examples see 'exampleOfEntireWorkflow.m' step #1
 % 
 % 
 % Yishaia Zabary, Jun. 2020 (Adapted for the Bioimage Data Analysis Workflows - Advanced Components

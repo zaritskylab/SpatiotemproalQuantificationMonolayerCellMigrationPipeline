@@ -86,12 +86,12 @@ function [coeff,score,latent] = PreCalcsForPCA(singleMeasureFeatures)
     [coeff,score,latent] = pca(normalizedSingleMeasureFeatures);
         
 end
-function [normalizedFeatureStruct] = normalizeFeat(singleFeatureStruct)
-    normalizedFeatureStruct = zeros(size(singleFeatureStruct));
-    featMean = mean(singleFeatureStruct);
-    featStd = std(singleFeatureStruct);
-    for i=1 : length(singleFeatureStruct)
-        normalized_value = (singleFeatureStruct(i) - featMean)/featStd;
-        normalizedFeatureStruct(i) = normalized_value(1);
+function [normalizedFeatures] = normalizeFeat(singleFeature)
+    normalizedFeatures = zeros(size(singleFeature));
+    featMean = mean(singleFeature);
+    featStd = std(singleFeature);
+    for i=1 : length(singleFeature)
+        normalized_value = (singleFeature(i) - featMean)/featStd;
+        normalizedFeatures(i) = normalized_value(1);
     end
 end

@@ -27,5 +27,7 @@ EstimateVeloctyFields(params, dirs);
 SegmentationMovie(params, dirs);
 % healing rate calculation and plot creator.
 CalcMonolayerMigrationMeasures(params, dirs);
+% render overlaid velocity fields on each frame including a video
+renderVelocityFieldVideo(params, dirs); 
 end
 
