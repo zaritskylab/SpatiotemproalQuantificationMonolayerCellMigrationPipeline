@@ -32,7 +32,7 @@ The pipeline includes four conceptual steps,  each depending on the previous one
 - `params.maxNFrames` % The frame number to end the analysis.
 - `params.patchSize` % The patch size for PIV and kymograph analyses.
 ### Sample data
-- Download raw images via the link: [SampleData]() , called `https://doi.org/10.5281/zenodo.4129846`
+- Download raw images via the link: [SampleDataset]() , called `https://doi.org/10.5281/zenodo.4308385`
 - The default parameters in `quantifyMonolayerMigrationBulkMain.m` and `quantifyMonolayerMigrationMain.m` were set for the single expanding monolayer directory of this data. 
 
 ### Output folders
